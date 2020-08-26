@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="주정용의 개인 블로그">
+        <meta name="author" content="주정용">
+
+        <title>주정용 닷컴</title>
+        <th:block th:replace="common/head :: headFragment"></th:block>
+    </head>
+
+    <body>
+        <th:block th:replace="common/top :: topFragment"></th:block>
+
+        <th:block layout:fragment="content"></th:block>
+
+        <th:block th:replace="common/foot :: footFragment"></th:block>
+    </body>
+</html>
