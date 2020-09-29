@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+
+<div class="container" th:align="center"
+     layout:fragment="content">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <form id="loginForm"
+                  th:action="@{/checkLogin}"
+                  th:method="post" th:object="${loginDTO}">
+                <table>
+                    <thead>
+                    <tr>
+                        <th th:text="아이디">기본</th>
+                        <th th:text="비밀번호">기본</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><input type="email"
+                                   th:field="*{email}"/>
+                        </td>
+                        <td><input type="password"
+                                   th:field="*{password}"/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn-primary" id="submit" th:text="로그인"></button>
+            </form>
+            <th:block th:if="${message} != null">
+                <div class="alert-danger" th:text="${message}">위험해요!</div>
+            </th:block>
+        </div>
+    </div>
+</div>
+</html>
+
+<script>
+    $('submit').click(function () {
+        $('loginForm').submit();
+    });
+</script>

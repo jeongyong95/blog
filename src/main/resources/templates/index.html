@@ -1,72 +1,59 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/default_layout}">
-
-<th:block layout:fragment="css"></th:block>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
 
 <!-- Main Content -->
 <div class="container" layout:fragment="content">
+    <form id="searchArea" action="/search" method="get"
+          class="col-md-auto">
+        <select th:name="searchType">
+            <option th:value=0>제목+내용</option>
+            <option th:value=1>제목</option>
+            <option th:value=2>내용</option>
+        </select>
+        <input type="search" name="searchKeyword">
+        <button id="searchBtn">search</button>
+    </form>
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="post-preview">
-                <a href="post">
-                    <h2 class="post-title">
-                        샘플 제목1
-                    </h2>
-                    <h3 class="post-subtitle">
-                        Problems look mighty small from 150 miles up
-                    </h3>
-                </a>
-                <p class="post-meta">Posted by
-                    <a href="#">Start Bootstrap</a>
-                    on September 24, 2019</p>
-            </div>
-            <hr>
-            <div class="post-preview">
-                <a href="post">
-                    <h2 class="post-title">
-                        샘플 제목2
-                    </h2>
-                </a>
-                <p class="post-meta">Posted by
-                    <a href="#">Start Bootstrap</a>
-                    on September 18, 2019</p>
-            </div>
-            <hr>
-            <div class="post-preview">
-                <a href="post">
-                    <h2 class="post-title">
-                        샘플 제목3
-                    </h2>
-                    <h3 class="post-subtitle">
-                        We predict too much for the next year and yet far too little for the next ten.
-                    </h3>
-                </a>
-                <p class="post-meta">Posted by
-                    <a href="#">Start Bootstrap</a>
-                    on August 24, 2019</p>
-            </div>
-            <hr>
-            <div class="post-preview">
-                <a href="post">
-                    <h2 class="post-title">
-                        샘플 제목4
-                    </h2>
-                    <h3 class="post-subtitle">
-                        Many say exploration is part of our destiny, but it’s actually our duty to future generations.
-                    </h3>
-                </a>
-                <p class="post-meta">Posted by
-                    <a href="#">Start Bootstrap</a>
-                    on July 8, 2019</p>
-            </div>
-            <hr>
+            <th:block
+                    th:each="post : ${resultList.content}">
+                <div class="post-preview"
+                     th:object="${post}">
+                    <a th:href="@{/post/postView/{postId}(postId=*{postId})}">
+                        <h2 class="post-title"
+                            th:name="title"
+                            th:text="*{title}">
+                        </h2>
+                        <h3 class="post-subtitle">
+                            부제
+                        </h3>
+                    </a>
+                    <p class="post-meta">Posted by
+                        <a href="#">Start Bootstrap</a>
+                        on September 24, 2019</p>
+                </div>
+                <hr>
+            </th:block>
+
             <!-- Pager -->
             <div class="clearfix">
-                <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+                <a class="btn btn-primary float-left"
+                   th:href="@{/(page=${resultList.number}-1)}">&larr;
+                    이전</a>
+                <a class="btn btn-primary float-right"
+                   th:href="@{/(page=${resultList.number}+1)}">다음
+                    &rarr;</a>
             </div>
         </div>
     </div>
 </div>
 
-<th:block layout:fragment="script"></th:block>
+<script layout:fragment="script">
+    let searchBtn = document.getElementById("searchBtn");
+    searchBtn.click(function () {
+        document.getElementById("searchArea").onsubmit();
+    })
+</script>
 </html>

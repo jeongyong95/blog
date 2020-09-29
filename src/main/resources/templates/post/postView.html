@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+
+<!-- Post Content -->
+<article layout:fragment="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto"
+                 th:object="${post}">
+                <div class="post-title"
+                     th:text="*{title}"></div>
+                <div class="align-content-center"
+                     th:text="*{content}"></div>
+            </div>
+        </div>
+    </div>
+</article>
+
+</html>
+

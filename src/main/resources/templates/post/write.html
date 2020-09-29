@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+
+<!-- Main Content -->
+<div class="container" layout:fragment="content">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <h2>글쓰기</h2>
+            <form id="writeForm" action="/post/write" th:method="post" th:object="${postRegisterDTO}">
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>Title</label>
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Title" id="title" th:field="*{title}"
+                               required
+                               data-validation-required-message="Please enter the title">
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>Content</label>
+                        <textarea rows="10"
+                                  class="form-control"
+                                  placeholder="Content"
+                                  id="content" th:field="*{content}" required
+                                  data-validation-required-message="Please enter a content."></textarea>
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <br>
+                <div id="success"></div>
+                <button type="submit"
+                        class="btn btn-primary"
+                        id="writePostButton">write
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('writePostButton').click(function () {
+        $('writeForm').submit();
+    });
+</script>
+
+</html>
