@@ -30,7 +30,7 @@ public class PostController {
         User user = (User) session.getAttribute("loginUser");
         postRegisterDTO.setUser(user);
         postService.registerPost(postRegisterDTO);
-        return "redirect:";
+        return "redirect:/";
     }
 
     @GetMapping(path = "/postView/{postId}")
