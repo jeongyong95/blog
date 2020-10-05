@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 
-@RequestMapping(path = {"/", "/index"})
 @Controller
 public class MainController {
 
@@ -27,18 +26,18 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping(path = "/about")
+    @GetMapping(path = "about")
     public String about() {
         return "about";
     }
 
-    @GetMapping(path = "/contact")
+    @GetMapping(path = "contact")
     public String contact() {
         return "contact";
     }
 
-    @GetMapping(path = "/search")
+    @GetMapping(path = "search")
     public ModelAndView searchPost(Pageable pageable, Integer searchType, String searchKeyword) {
-        return new ModelAndView("/index", "resultList", postService.searchPost(pageable, searchType, searchKeyword));
+        return new ModelAndView("index", "resultList", postService.searchPost(pageable, searchType, searchKeyword));
     }
 }

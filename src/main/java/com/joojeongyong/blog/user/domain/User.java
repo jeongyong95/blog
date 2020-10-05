@@ -13,7 +13,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
     private String email;
     private String password;

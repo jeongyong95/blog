@@ -18,25 +18,25 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @GetMapping(path = "/login")
+    @GetMapping(path = "login")
     public ModelAndView getLoginForm() {
-        return new ModelAndView("/user/login", "loginDTO", new UserDTO.UserLoginDTO());
+        return new ModelAndView("user/login", "loginDTO", new UserDTO.UserLoginDTO());
     }
 
-    @GetMapping(path = "/logout")
+    @GetMapping(path = "logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "redirect:/index";
+        return "redirect:";
     }
 
-    @PostMapping(path = "/checkLogin")
+    @PostMapping(path = "checkLogin")
     public ModelAndView checkLoginForm(HttpSession session, RedirectAttributes redirectAttributes, UserDTO.UserLoginDTO loginDTO) {
         User user = userService.getUser(loginDTO.getEmail());
         String message = "비밀번호가 일치하지 않습니다.";
 
         if (user.getEmail().equals(loginDTO.getEmail()) && user.getPassword().equals(loginDTO.getPassword())) {
             session.setAttribute("loginUser", user);
-            return new ModelAndView("redirect:/index");
+            return new ModelAndView("redirect:");
         }
 
         if (!user.getEmail().equals(loginDTO.getEmail())) {
@@ -44,7 +44,7 @@ public class UserController {
         }
 
         redirectAttributes.addAttribute("message", message);
-        return new ModelAndView("redirect:/login");
+        return new ModelAndView("redirect:login");
     }
 
 }

@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class Post {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long postId;
 
     private String title;

@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-@RequestMapping(path = "/post")
+@RequestMapping(path = "post")
 @Controller
 public class PostController {
 
@@ -22,7 +22,7 @@ public class PostController {
 
     @GetMapping(path = "/writeForm")
     public ModelAndView getWriteForm() {
-        return new ModelAndView("/post/write", "postRegisterDTO", new PostDTO.PostRegisterDTO());
+        return new ModelAndView("post/write", "postRegisterDTO", new PostDTO.PostRegisterDTO());
     }
 
     @PostMapping("/write")
@@ -30,11 +30,11 @@ public class PostController {
         User user = (User) session.getAttribute("loginUser");
         postRegisterDTO.setUser(user);
         postService.registerPost(postRegisterDTO);
-        return "redirect:/";
+        return "redirect:";
     }
 
     @GetMapping(path = "/postView/{postId}")
     public ModelAndView getPost(@PathVariable Long postId) {
-        return new ModelAndView("/post/postView", "post", postService.getPost(postId));
+        return new ModelAndView("post/postView", "post", postService.getPost(postId));
     }
 }
