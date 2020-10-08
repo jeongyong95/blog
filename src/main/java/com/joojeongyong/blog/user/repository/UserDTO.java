@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 
 public class UserDTO {
 
-    @NoArgsConstructor
     @Data
+    @NoArgsConstructor
     public static class UserRegiDTO {
         private String email;
         private String password;
@@ -18,10 +18,16 @@ public class UserDTO {
         }
     }
 
-    @NoArgsConstructor
     @Data
+    @NoArgsConstructor
     public static class UserLoginDTO {
         private String email;
         private String password;
+    }
+
+    public static class UserDisplayDTO {
+        private Long userId;
+        private String email;
+        private String username;
     }
 }

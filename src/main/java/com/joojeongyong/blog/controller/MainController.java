@@ -7,7 +7,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -22,7 +21,7 @@ public class MainController {
     //    이때 pageable의 기본값은 page : 0, size : 20이다
     @GetMapping
     public String index(Model model, @PageableDefault(size = 7, sort = {"postId"}, direction = Sort.Direction.DESC) Pageable pageable) {
-        model.addAttribute("resultList", postService.getPostList(pageable));
+        model.addAttribute("resultList", postService.getPostPage(pageable));
         return "index";
     }
 

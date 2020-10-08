@@ -3,6 +3,8 @@ package com.joojeongyong.blog.user.service;
 import com.joojeongyong.blog.user.domain.User;
 import com.joojeongyong.blog.user.repository.UserDTO;
 import com.joojeongyong.blog.user.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,6 +23,21 @@ public class UserServiceImpl implements UserService {
             return user.get();
         }
         return new UserDTO.UserRegiDTO().toEntity();
+    }
+
+    @Override
+    public UserDTO.UserDisplayDTO getUserInfo(String email) {
+        return null;
+    }
+
+    @Override
+    public Page<UserDTO.UserDisplayDTO> getUserInfoPage(Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public void registerUser(UserDTO.UserRegiDTO registerDTO) {
+        userRepo.save(registerDTO.toEntity());
     }
 
 }

@@ -15,7 +15,7 @@
         <input type="search" name="searchKeyword">
         <button id="searchBtn">search</button>
     </form>
-    <div class="row">
+    <div class="row" th:if="${!resultList.isEmpty()}">
         <div class="col-lg-8 col-md-10 mx-auto">
             <th:block
                     th:each="post : ${resultList.content}">
@@ -30,9 +30,9 @@
                             부제
                         </h3>
                     </a>
-                    <p class="post-meta">Posted by
-                        <a href="#">Start Bootstrap</a>
-                        on September 24, 2019</p>
+                    <p class="post-meta" th:text="|Post by *{createdAt}|">Posted by
+                        <a href="#">Start jjy.com</a>
+                        </p>
                 </div>
                 <hr>
             </th:block>

@@ -47,4 +47,15 @@ public class UserController {
         return new ModelAndView("redirect:login");
     }
 
+    @GetMapping(path = "join")
+    public ModelAndView getJoinForm() {
+        return new ModelAndView("user/join", "registerDTO", new UserDTO.UserRegiDTO());
+    }
+
+    @PostMapping(path = "registerUser")
+    public String registerUser(UserDTO.UserRegiDTO registerDTO) {
+        userService.registerUser(registerDTO);
+
+        return "redirect:login";
+    }
 }

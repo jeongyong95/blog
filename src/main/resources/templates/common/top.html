@@ -9,6 +9,7 @@
             <a class="navbar-brand" href="/">HOME</a>
             <th:block th:if="${session.loginUser} == null">
                 <a th:href="@{/login}">login</a>
+                <a th:href="@{/join}">join</a>
             </th:block>
             <th:block
                     class="nav-item"

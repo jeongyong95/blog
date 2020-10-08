@@ -1,20 +1,25 @@
+server:
+  "[port]": 80
+
 spring:
+  profiles:
+    "[active]": dev
   devtools:
     livereload:
       "[enabled]": true
   datasource:
     "[driver-class-name]": com.mysql.cj.jdbc.Driver
-    "[url]": jdbc:mysql://cocofarm.caqo8iirn0pz.ap-northeast-2.rds.amazonaws.com:3306/blog?autoReconnect=true
-    "[username]": jeongyong95
-    "[password]": vmfhgod11
+      "[url]": jdbc:mysql://localhost:3306/blog?serverTimezone=UTC
+      "[username]": root
+      "[password]": vmfhgod11
     hikari:
       "[maximum-pool-size]": 20
       "[connection-timeout]": 20000
 
-
   jpa:
+    "[generate-ddl]": true
     hibernate:
-      "[ddl-auto]": none
+      "[ddl-auto]": create
     "[open-in-view]": false
     "[show-sql]": true
     properties:
@@ -22,4 +27,4 @@ spring:
         "[format_sql]": true
     "[database-platform]": org.hibernate.dialect.MySQL8Dialect
   thymeleaf:
-    "[cache]": true
+    "[cache]": false
