@@ -12,10 +12,12 @@
                 <div class="post-title"><strong
                         th:text="*{title}">title</strong>
                 </div>
-                <hr>
-                <div class="text-md-left">
-                    <textarea th:text="*{content}">content</textarea>
+                <div>
+                    <a th:href="@{#}" th:text="*{writer}">작성자</a>
                 </div>
+                <hr>
+                <textarea class="col-md-10" readonly
+                          th:text="*{content}">content</textarea>
             </div>
         </div>
     </div>
