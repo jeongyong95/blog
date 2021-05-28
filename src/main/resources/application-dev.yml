@@ -11,7 +11,7 @@ spring:
     "[driver-class-name]": com.mysql.cj.jdbc.Driver
     "[url]": jdbc:mysql://localhost:3306/blog?serverTimezone=UTC
     "[username]": root
-    "[password]": vmfhgod11
+    "[password]":
     hikari:
       "[maximum-pool-size]": 20
       "[connection-timeout]": 20000
